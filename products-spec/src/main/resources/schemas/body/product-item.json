@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "javaType": "com.thiagoti.api.products.spec.ProductItem",
+  "type": "object",
+  "properties": {
+  	"id": {
+      "type": "string"
+    },
+  	"name": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string"
+    }
+  },
+  "required": [
+  	"id",
+  	"name",
+  	"brand"
+  ]
+}

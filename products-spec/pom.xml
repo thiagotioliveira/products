@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.1</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.thiagoti.products</groupId>
+	<artifactId>products-spec</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Products Spec</name>
+	<description>Products Spec</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.11</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.phoenixnap.oss</groupId>
+				<artifactId>springmvc-raml-plugin</artifactId>
+				<version>2.0.5</version>
+				<configuration>
+					<ramlPath>src/main/resources/api.raml</ramlPath>
+					<schemaLocation>/types/</schemaLocation>
+					<outputRelativePath>src/main/java</outputRelativePath>
+					<addTimestampFolder>false</addTimestampFolder>
+					<basePackage>com.thiagoti.products.spec.api</basePackage>
+					<generateUnreferencedObjects>true</generateUnreferencedObjects>
+					<generationConfig>
+						<includeAdditionalProperties>true</includeAdditionalProperties>
+						<generateBuilders>true</generateBuilders>
+						<useCommonsLang3>true</useCommonsLang3>
+					</generationConfig>
+					<seperateMethodsByContentType>false</seperateMethodsByContentType>
+					<rule>com.phoenixnap.oss.ramlplugin.raml2code.rules.Spring4ControllerInterfaceRule</rule>
+					<ruleConfiguration>
+					</ruleConfiguration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-springmvc-endpoints</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>generate-springmvc-endpoints</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

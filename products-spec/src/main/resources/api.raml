@@ -1,0 +1,64 @@
+#%RAML 1.0
+title: Products
+version: v1
+baseUri: "/v1"
+mediaType:  application/json
+protocols: [ HTTP, HTTPS ]
+
+/products:
+    description: Products Api
+    post:
+        description: Post Product
+        body:
+          application/json:
+            schema: !include schemas/body/post-product-request-body.json
+            example: !include examples/body/post-product-request-body.json
+        responses:
+          201:
+            description: response
+            body:
+                application/json:
+                    schema: !include schemas/body/product-item.json
+                    example: !include examples/body/product-item.json
+    get:
+        description: List Products
+        queryParameters:
+           name:
+              required: false
+           brand:
+              required: false
+        responses:
+          200:
+            description: response
+            body:
+                application/json:
+                    schema: !include schemas/body/products-response-body.json
+                    example: !include examples/body/products-response-body.json
+    /{id}:
+       delete:
+          description: Delete Product By Id
+          responses:
+             202:
+                 description: response
+       get:
+          description: Get Product By Id
+          responses:
+             200:
+               description: response
+               body:
+                   application/json:
+                       schema: !include schemas/body/product-item.json
+                       example: !include examples/body/product-item.json
+       put:
+          description: Put Product By Id
+          body:
+             application/json:
+                 schema: !include schemas/body/put-product-request-body.json
+                 example: !include examples/body/put-product-request-body.json
+          responses:
+             202:
+                 description: response
+                 body:
+                      application/json:
+                          schema: !include schemas/body/product-item.json
+                          example: !include examples/body/product-item.json
